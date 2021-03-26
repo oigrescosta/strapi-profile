@@ -1,19 +1,18 @@
 import React from 'react'
 import axios from 'axios'
+import {handleChange} from '../utils/inputs'
 
 class RegisterOrLogin extends React.Component {
-    state = {
-        email: '',
-        password: '',
-        mode: 'login'
-    }
+    constructor(props) {
+        super(props)
 
-    handleChange = (e) => {
-        const {name, value} = e.target
-        this.setState({[name]: value})
+        this.state = {
+            email: '',
+            password: '',
+            mode: 'login'
+        }
 
-        console.log("RegisterOrLogin.handleChange e.target.name", name)
-        console.log("RegisterOrLogin.handleChange e.target.value", value)
+        this.handleChange = handleChange.bind(this)
     }
 
     handleSubmit = async (e) => {
