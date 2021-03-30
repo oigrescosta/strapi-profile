@@ -8,6 +8,19 @@ class App extends React.Component {
   state = {
     user: null
   }
+
+  componentDidMount() {
+    if(localStorage.getItem('user')) {
+      const user = JSON.parse(localStorage.getItem('user'))
+      this.setState({user})
+    }
+  }
+
+  logout = () => {
+    localStorage.removeItem('user')
+    this.setState({user:null})
+  }
+
   render() {
     const {user} = this.state
     return(
@@ -16,7 +29,10 @@ class App extends React.Component {
           <RegisterOrLogin updatedUser={(user) => this.setState({user})} />
         }
         {user &&
-          <ProfilePage user={user} />
+          <div>
+            <ProfilePage user={user} />
+            <button onClick={this.logout}>Log out</button>
+          </div>
         }
      </div>
     )

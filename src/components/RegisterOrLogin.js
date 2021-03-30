@@ -45,6 +45,7 @@ class RegisterOrLogin extends React.Component {
 
         console.log("RegisterOrLogin.handleSubmit userCreationRes", userCreationRes)
         if(this.props.updatedUser && typeof this.props.updatedUser === 'function') {
+            localStorage.setItem('user', JSON.stringify(userCreationRes.data))
             this.props.updatedUser(userCreationRes.data)
         }
     }
